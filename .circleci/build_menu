@@ -45,7 +45,7 @@ STD=`echo -e "\033[0m"`		# Text Clear
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
-  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV gta9_00_defconfig
+  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV defconfig
   make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV
 
   [ -e "$(pwd)/arch/arm64/boot/Image.gz" ] && cp "$(pwd)/arch/arm64/boot/Image.gz" $OUT_DIR/Image.gz
@@ -88,7 +88,7 @@ gsi_kernel(){
   git apply gsi-commits.patch
 }
 
-ls -la $(pwd)/kernel
+#ls -la $(pwd)/kernel
 
 build_kernel
 
