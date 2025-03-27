@@ -88,7 +88,7 @@ gsi_kernel(){
   git apply gsi-commits.patch
 }
 
-#ls -la $(pwd)/kernel
+ls -la $(pwd)/kernel
 
 build_kernel
 
