@@ -92,6 +92,6 @@ gsi_kernel(){
 
 build_kernel
 
-#gsi_kernel
+gsi_kernel
 
-#build_kernel
+build_kernel
