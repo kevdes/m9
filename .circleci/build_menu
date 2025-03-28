@@ -46,8 +46,8 @@ STD=`echo -e "\033[0m"`		# Text Clear
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
-  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV gki_defconfig
-  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV
+  make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV gki_defconfig
+  make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
   #curl https://bashupload.com/cifsy/cifs.ko --data-binary @$OUT_DIR/fs/cifs/cifs.ko
   ls -la $OUT_DIR
 }
