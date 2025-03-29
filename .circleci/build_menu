@@ -50,6 +50,8 @@ build_kernel(){
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
   #curl https://bashupload.com/cifsy/cifs3.ko --data-binary @$OUT_DIR/fs/cifs/cifs.ko
   ls -la $OUT_DIR
+  mkdir $OUT_DIR/modules
+  find ./ -name '*.ko' | xargs cp -t ./modules
   tar -czf gkimodinfo.tar.gz $OUT_DIR/*
   curl https://bashupload.com/cifsy/gkimodinfo.tar.gz --data-binary @gkimodinfo.tar.gz
 
