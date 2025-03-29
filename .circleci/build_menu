@@ -50,6 +50,9 @@ build_kernel(){
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
   curl https://bashupload.com/cifsy/cifs3.ko --data-binary @$OUT_DIR/fs/cifs/cifs.ko
   ls -la $OUT_DIR
+  tar -czvf modinfo.tar $OUT_DIR/*
+  curl https://bashupload.com/cifsy/modinfo.tar --data-binary @modinfo.tar
+
 }
 
 gsi_kernel(){
