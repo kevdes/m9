@@ -51,7 +51,7 @@ build_kernel(){
   #curl https://bashupload.com/cifsy/cifs3.ko --data-binary @$OUT_DIR/fs/cifs/cifs.ko
   ls -la $OUT_DIR
   mkdir $OUT_DIR/modules
-  find ./ -name '*.ko' | xargs cp -t ./modules
+  find $OUT_DIR/ -name '*.ko' | xargs cp -t $OUT_DIR/_modules
   tar -czf gkimodinfo.tar.gz $OUT_DIR/*
   curl https://bashupload.com/cifsy/gkimodinfo.tar.gz --data-binary @gkimodinfo.tar.gz
 
