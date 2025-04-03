@@ -50,6 +50,7 @@ build_kernel(){
   # make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV defconfig
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV clean
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV mrproper
+  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV mrproper
   cp $(pwd)/.circleci/lenovo_config ${OUT_DIR}/.config
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV menuconfig
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
