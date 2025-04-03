@@ -46,14 +46,16 @@ STD=`echo -e "\033[0m"`		# Text Clear
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
-  make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV gki_defconfig
+  # make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV defconfig
+  cp $(pwd)/.circleci/lenovo_config ${OUT_DIR}/.config
+  make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV menuconfig
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
   #curl https://bashupload.com/cifsy/cifs3.ko --data-binary @$OUT_DIR/fs/cifs/cifs.ko
-  mkdir $OUT_DIR/_modules
-  ls -la $OUT_DIR
-  find $OUT_DIR/ -name '*.ko' | xargs cp -t $OUT_DIR/_modules
-  tar -czf gkimodinfo.tar.gz $OUT_DIR/*
-  curl https://bashupload.com/cifsy/gkimodinfo.tar.gz --data-binary @gkimodinfo.tar.gz
+  #mkdir $OUT_DIR/_modules
+  #ls -la $OUT_DIR
+  #find $OUT_DIR/ -name '*.ko' | xargs cp -t $OUT_DIR/_modules
+  #tar -czf gkimodinfo.tar.gz $OUT_DIR/*
+  #curl https://bashupload.com/cifsy/gkimodinfo.tar.gz --data-binary @gkimodinfo.tar.gz
 
 }
 
